@@ -2,8 +2,8 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#2563ff">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#2fa8e2">
 
 <!-- iOS Web App Meta Tags -->
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -14,13 +14,13 @@
 
 <title>Sổ thu chi</title>
 
-<!-- Web App Manifest (Nội tuyến Base64 chuẩn PWA không cần file ngoài) -->
-<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiU+G7lSB0aHUgY2hpIiwiY2hhbWVub21lX25hbWUiOiJT4buVIHRodSBjaGkiLCJzdGFydF91cmwiOiIuLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNlZWYzZmUiLCJ0aGVtZV9jb2xvciI6IiMyNTYzZmYiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sLDxzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgNTEyIDUxMic+PHJlY3Qgd2lkdGg9JzUxMicgaGVpZ2h0PSc1MTInIHJ4PScxMjgnIGZpbGw9JyMyNTYzZmYnLz48cGF0aCBkPSdNMTYwIDE2MGgyMDB2MTkySDE2MHonIGZpbGw9JyNmZmYnLz48L3N2Zz4iLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCJ9XX0=">
+<!-- Web App Manifest -->
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiU+G7lSB0aHUgY2hpIiwiY2hhbWVub21lX25hbWUiOiJT4buVIHRodSBjaGkiLCJzdGFydF91cmwiOiIuLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNlZWYzZmUiLCJ0aGVtZV9jb2xvciI6IiMyZmE4ZTIiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sLDxzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgNTEyIDUxMic+PHJlY3Qgd2lkdGg9JzUxMicgaGVpZ2h0PSc1MTInIHJ4PScxMjgnIGZpbGw9JyMyNTYzZmYnLz48cGF0aCBkPSdNMTYwIDE2MGgyMDB2MTkySDE2MHonIGZpbGw9JyNmZmYnLz48L3N2Zz4iLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCJ9XX0=">
 
-<!-- Apple Touch Icon SVG nội tuyến -->
+<!-- Apple Touch Icon SVG -->
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='128' fill='%232563ff'/><path d='M140 120h232a24 24 0 0 1 24 24v224a24 24 0 0 1-24 24H140a24 24 0 0 1-24-24V144a24 24 0 0 1 24-24z' fill='%23ffffff' opacity='0.95'/><path d='M190 200h132M190 256h132M190 312h80' stroke='%232563ff' stroke-width='22' stroke-linecap='round'/><circle cx='340' cy='312' r='20' fill='%2316a34a'/></svg>">
 
-<!-- Google Identity Services cho Web OAuth Popup -->
+<!-- Google Identity Services -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <style>
@@ -30,22 +30,30 @@
   --sab:env(safe-area-inset-bottom, 0px);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;width:100%;overflow:hidden;position:fixed}
+html,body{
+  height:100%;height:100dvh;width:100%;overflow:hidden;
+  background:var(--bg);
+}
 body{
-  font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,sans-serif;
-  background:var(--bg);color:var(--t);max-width:560px;margin:auto;user-select:none;
-  display:flex;flex-direction:column;
+  font:15px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,sans-serif;
+  color:var(--t);max-width:560px;margin:0 auto;user-select:none;
+  display:flex;flex-direction:column;position:relative;
 }
 #v{
-  flex:1;height:100%;overflow-y:auto;overflow-x:hidden;
+  flex:1;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;
   padding-bottom:calc(96px + var(--sab));
   -webkit-overflow-scrolling:touch;
 }
 button{font:inherit;cursor:pointer}
 .row{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.hd{padding:calc(16px + var(--sat)) 16px 64px;color:#fff}
-.h1{background:linear-gradient(160deg,#2fa8e2,#3b82ec)}
-.h2{background:#1d0aa6}
+/* Header kéo tràn lên vùng Dynamic Island / Status Bar của iPhone 17 */
+.hd{
+  padding:calc(12px + max(var(--sat), 48px)) 16px 64px;
+  color:#fff;
+  margin-top:0;
+}
+.h1{background:linear-gradient(165deg,#2fa8e2 0%,#2563ff 100%)}
+.h2{background:linear-gradient(165deg,#1e1b8b 0%,#1d0aa6 100%)}
 .hd h1{font-size:20px;font-weight:600}
 .who{display:flex;align-items:center;gap:12px}.who b{font-size:18px}
 .av{width:48px;height:48px;border-radius:50%;border:2px solid #fff;display:grid;place-items:center;font-weight:700;flex:none;background:#2563ff;color:#fff;overflow:hidden}
@@ -53,21 +61,21 @@ button{font:inherit;cursor:pointer}
 .ib svg{width:24px;height:24px}svg.i{display:block}
 .sc i svg,.li i svg{width:22px;height:22px}.mn button{display:grid;place-items:center}.mn button svg{width:18px}
 .eye,.x{display:flex;align-items:center}.eye svg{width:22px;height:22px}.x svg{width:20px;height:20px}
-.top{padding:calc(14px + var(--sat)) 8px 8px;display:flex;align-items:center;justify-content:space-between}
+.top{padding:calc(10px + max(var(--sat), 44px)) 8px 10px;display:flex;align-items:center;justify-content:space-between}
 .top b{font-size:18px}.top .ib{color:var(--t);width:40px}
-.body{padding:0 12px}.first{margin-top:-50px}
-.card{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+.body{padding:0 14px}.first{margin-top:-48px}
+.card{background:#fff;border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:0 2px 10px rgba(37,99,255,0.05)}
 .big{font-size:28px;font-weight:700}
 .m{color:var(--m);font-size:13px}
 .st{font-weight:600;margin:14px 2px 8px}
 .eye{background:none;border:0;font-size:22px;color:var(--t);cursor:pointer}
-.sc{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;font-size:13px}
-.sc>div{cursor:pointer}
+.sc{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;text-align:center;font-size:12.5px;line-height:1.25;align-items:start}
+.sc>div{cursor:pointer;display:flex;flex-direction:column;align-items:center}
 .sc i{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;margin:0 auto 6px;font-style:normal;font-size:22px;background:var(--bg);color:var(--b)}
 .mn{margin:2px 0 10px}.mn button{background:#fff;border:0;border-radius:10px;width:38px;height:34px;font-size:20px}.mn b{font-size:16px}
 .sel{width:100%;font:inherit;padding:10px;border:1px solid var(--l);border-radius:10px;background:#fff}
-.bars{display:flex;gap:12px;align-items:flex-end;height:110px}
-.bars i{width:44px;border-radius:6px 6px 0 0;min-height:3px}
+.bars{display:flex;gap:12px;align-items:flex-end;height:100px;padding:0 8px}
+.bars i{width:42px;border-radius:6px 6px 0 0;min-height:3px}
 .dn{width:118px;height:118px;border-radius:50%;position:relative;flex:none}
 .dn::after{content:"";position:absolute;inset:27px;background:#fff;border-radius:50%}
 s{display:inline-block;width:14px;height:14px;border-radius:5px;margin-right:8px;vertical-align:-2px}
@@ -96,14 +104,34 @@ s{display:inline-block;width:14px;height:14px;border-radius:5px;margin-right:8px
 .action-sheet-item svg{width:22px;height:22px;color:#555;flex:none}
 .action-sheet-item.danger{color:var(--out)}
 .action-sheet-item.danger svg{color:var(--out)}
-.fab{position:fixed;right:max(18px,calc(50% - 262px));bottom:calc(92px + var(--sab));width:56px;height:56px;border-radius:50%;background:var(--b);color:#fff;border:0;font-size:32px;box-shadow:0 4px 12px #2563ff66;z-index:4;display:none;cursor:pointer}
-nav{position:fixed;left:0;right:0;bottom:calc(8px + var(--sab));max-width:560px;margin:auto;padding:0 12px;z-index:5}
-nav div{background:var(--b);border-radius:32px;display:flex;padding:8px 4px;box-shadow:0 4px 14px #2563ff55}
-nav button{flex:1;background:none;border:0;color:#ffffffb3;font-size:12px;display:flex;flex-direction:column;align-items:center;gap:2px}
-nav button b{display:block;line-height:0;margin-bottom:2px}nav button b svg{width:24px;height:24px}
+.fab{position:fixed;right:max(18px,calc(50% - 262px));bottom:calc(88px + max(var(--sab), 10px));width:56px;height:56px;border-radius:50%;background:var(--b);color:#fff;border:0;font-size:32px;box-shadow:0 4px 12px #2563ff66;z-index:4;display:none;cursor:pointer}
+
+/* Thanh điều hướng dưới cùng cân đối thẳng hàng trên iPhone 17 */
+nav{
+  position:fixed;left:0;right:0;
+  bottom:max(var(--sab), 10px);
+  max-width:560px;margin:auto;padding:0 14px;z-index:5;
+}
+nav div{
+  background:var(--b);border-radius:30px;
+  display:grid;grid-template-columns:repeat(5,1fr);align-items:center;
+  padding:6px 6px;box-shadow:0 6px 20px rgba(37,99,255,0.38);
+}
+nav button{
+  background:none;border:0;color:#ffffffb3;font-size:11.5px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;padding:4px 0;white-space:nowrap;
+}
+nav button b{display:grid;place-items:center;height:26px;line-height:0}
+nav button b svg{width:23px;height:23px}
 nav button.on{color:#fff;font-weight:600}
-nav button.add b{width:38px;height:38px;border-radius:50%;background:#fff;color:var(--b);display:grid;place-items:center;margin-bottom:0}nav button.add b svg{width:22px;height:22px;stroke-width:2.6}
-.btn{border:0;border-radius:12px;padding:12px 14px;font-size:15px;background:var(--b);color:#fff;font-weight:600}
+nav button.add b{
+  width:38px;height:38px;border-radius:50%;background:#fff;color:var(--b);
+  display:grid;place-items:center;margin-top:-2px;box-shadow:0 2px 6px rgba(0,0,0,0.12);
+}
+nav button.add b svg{width:22px;height:22px;stroke-width:2.6}
+
+.btn{border:0;border-radius:12px;padding:11px 16px;font-size:15px;background:var(--b);color:#fff;font-weight:600}
 .btn.g{background:var(--l);color:var(--t)}.btn.r{background:#fee2e2;color:var(--out)}
 .btns{display:flex;gap:8px;margin-top:14px}.btns .btn{flex:1}
 #m{position:fixed;inset:0;background:#0006;display:none;align-items:flex-end;justify-content:center;z-index:9}
@@ -119,11 +147,11 @@ input,select,textarea{width:100%;font:inherit;padding:10px;border:1px solid var(
 .it{padding:12px 14px;border-bottom:1px solid var(--l);cursor:pointer}.it:last-child{border:0}
 h3{font-size:13px;color:var(--m);font-weight:600;margin:12px 2px 6px}
 .empty{text-align:center;color:var(--m);padding:36px 10px}
-#ts{position:fixed;left:50%;bottom:calc(100px + var(--sab));transform:translateX(-50%);background:#1f2937;color:#fff;padding:9px 18px;border-radius:20px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:20;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+#ts{position:fixed;left:50%;bottom:calc(96px + var(--sab));transform:translateX(-50%);background:#1f2937;color:#fff;padding:9px 18px;border-radius:20px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:20;box-shadow:0 4px 12px rgba(0,0,0,0.15);white-space:nowrap}
 #ts.on{opacity:0.96}
 
 .ad{background:linear-gradient(#c8d5f8 0,#e6ecfb 280px,var(--bg) 560px);min-height:100%}
-.adh{display:flex;justify-content:space-between;align-items:center;padding:calc(14px + var(--sat)) 14px 6px}
+.adh{display:flex;justify-content:space-between;align-items:center;padding:calc(10px + max(var(--sat), 44px)) 14px 6px}
 .cb{width:46px;height:46px;border-radius:50%;background:#f3f5fb;border:1px solid #fff;box-shadow:0 2px 6px #0001;display:grid;place-items:center;color:var(--t)}.cb svg{width:24px;height:24px}
 .tsel{border:1.5px solid var(--b);background:#fff;color:var(--b);font-weight:600;font-size:19px;border-radius:12px;padding:8px 18px}
 .tmenu{position:absolute;left:50%;transform:translateX(-50%);top:54px;background:#fff;border-radius:12px;box-shadow:0 4px 16px #0003;overflow:hidden;z-index:6;min-width:150px}.tmenu div{padding:12px 18px;font-size:17px;border-bottom:1px solid var(--l);cursor:pointer}.tmenu div:last-child{border:0}
@@ -131,11 +159,11 @@ h3{font-size:13px;color:var(--m);font-weight:600;margin:12px 2px 6px}
 .ct{display:grid;place-items:center;width:54px;height:54px;border-radius:16px;font-size:28px;font-style:normal;flex:none}
 .ct.dash{border:2px dashed #cfd5e2;background:#f4f6fa;color:#9aa3b5;width:50px;height:50px;border-radius:14px}.ct.dash svg{width:26px;height:26px}
 .ct.sm{width:42px;height:42px;border-radius:12px;background:#e6f0ff;color:var(--b)}.ct.sm svg{width:24px;height:24px}
-.cg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 6px;margin-top:14px;text-align:center;font-size:15px}
+.cg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 6px;margin-top:14px;text-align:center;font-size:14px}
 .cgi{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0;cursor:pointer}.cgi span{max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.cgi.sel .ct{box-shadow:0 0 0 2.5px var(--b)}
 .lk{color:var(--b);font-size:17px;display:flex;align-items:center;gap:4px;cursor:pointer}.lk svg{width:20px;height:20px}
-.rf{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid var(--l);font-size:18px;position:relative;cursor:pointer}.rf:last-child{border:0}.rf>svg{width:24px;height:24px;color:#4b5563;flex:none}.rf .f{flex:1}
-.rf .nt{border:0;padding:0;background:none;font-size:18px;outline:none}
+.rf{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid var(--l);font-size:17px;position:relative;cursor:pointer}.rf:last-child{border:0}.rf>svg{width:24px;height:24px;color:#4b5563;flex:none}.rf .f{flex:1}
+.rf .nt{border:0;padding:0;background:none;font-size:17px;outline:none}
 .rf.rel .ov{position:absolute;top:0;bottom:0;opacity:0;border:0;padding:0;height:100%;cursor:pointer}
 #kp{position:fixed;left:0;right:0;bottom:0;max-width:560px;margin:auto;background:#ebedf1;z-index:9;display:none;padding-bottom:var(--sab)}#kp.on{display:block}
 .kg{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #d3d6dc}
@@ -152,7 +180,6 @@ body.kpo #v{padding-bottom:380px}
 .pill-tab{display:inline-block;padding:7px 16px;border-radius:20px;border:1px solid #ffffff40;color:#fff;font-size:13px;margin-right:6px}
 .pill-tab.active{background:#ffffff26;border-color:#fff;font-weight:600}
 
-/* Thanh hướng dẫn cài iOS Safari */
 #ios-pwa-banner{
   background:linear-gradient(135deg,#1e3a8a,#2563ff);color:#fff;padding:12px 16px;border-radius:14px;
   margin-bottom:12px;display:none;align-items:center;gap:12px;font-size:13px;line-height:1.4
@@ -181,10 +208,6 @@ body.kpo #v{padding-bottom:380px}
 <div id="ts"></div>
 
 <script>
-/* CẤU HÌNH GOOGLE OAUTH
-   - webClientId: Dành riêng cho nền Web & iPhone PWA (tạo tại Google Cloud Console -> OAuth Client ID -> Web Application)
-   - Lưu ý trên Google Cloud: Thêm domain của bạn vào Authorized JavaScript origins (ví dụ: https://baobao369.github.io)
-*/
 window.DRIVE_CONFIG = {
   webClientId: "773595692899-8fve5sskn5jg4mm8rg56b4l8v18thbst.apps.googleusercontent.com"
 };
@@ -236,18 +259,9 @@ const J=k=>{try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}
 let S=J(K);
 if(!S||!S.acc){
   S={
-    acc:[
-      {id:'a1',name:'Tiền mặt',init:2401000,u:1,disabled:false},
-      {id:'a2',name:'MB Bank',init:5748948,u:1,disabled:false}
-    ],
-    tx:[
-      {id:'t1',type:'in',amt:15000000,acc:'a2',cat:'Lương',date:new Date().toISOString().slice(0,7)+'-05',tm:'09:00',note:'Lương tháng',u:1},
-      {id:'t2',type:'out',amt:65000,acc:'a1',cat:'Cafe',date:new Date().toISOString().slice(0,10),tm:'08:30',note:'Highlands Coffee',u:1},
-      {id:'t3',type:'out',amt:350000,acc:'a2',cat:'Đi chợ/siêu thị',date:new Date().toISOString().slice(0,10),tm:'11:15',note:'WinMart',u:1}
-    ],
-    debt:[
-      {id:'d1',kind:'lend',person:'Anh Minh',amt:1000000,date:new Date().toISOString().slice(0,10),due:'',note:'Vay tiền sinh hoạt',u:1}
-    ],
+    acc:[{id:'a1',name:'Tiền mặt',init:0,u:1,disabled:false}],
+    tx:[],
+    debt:[],
     me:{name:'Phạm Phương Bảo',av:'',u:1}
   };
 }
@@ -290,7 +304,7 @@ const isIosSafari=()=>{
 const mnav=()=>`<div class="row mn"><button onclick="fm=mAdd(fm,-1);render(1)">${ic('chL')}</button><b>tháng ${+fm.slice(5)} ${fm.slice(0,4)}</b><button onclick="fm=mAdd(fm,1);render(1)">${ic('chR')}</button></div>`;
 const hdr=(t,b=1)=>`<div class="top">${b?'<button class="ib" onclick="back()">'+ic('back')+'</button>':'<span style="width:40px"></span>'}<b>${t}</b><span style="width:40px"></span></div>`;
 const sg=(v,a,k1,l1,k2,l2)=>`<div class="tab2"><button class="${v==k1?'on':''}" onclick="${a}='${k1}';render(1)">${l1}</button><button class="${v==k2?'on':''}" onclick="${a}='${k2}';render(1)">${l2}</button></div>`;
-const sc=(i,t,f)=>`<div onclick="${f}"><i>${i}</i>${t}</div>`;
+const sc=(i,t,f)=>`<div onclick="${f}"><i>${i}</i><span>${t}</span></div>`;
 function donut(L,y){const m={};L.filter(t=>t.type==y).forEach(t=>{const c=gname(y,t.cat||'Khác');m[c]=(m[c]||0)+t.amt});const e=Object.entries(m).sort((a,b)=>b[1]-a[1]),tot=e.reduce((s,x)=>s+x[1],0);let a=0;const g=e.map((x,k)=>{const p=tot?x[1]/tot*100:0,s=`${COL[k%8]} ${a}% ${a+p}%`;a+=p;return s});return{e,tot,bg:g.length?`conic-gradient(${g.join(',')})`:'#e3e8f2'}}
 function go(t){tab=t;sub=null;ret=null;render()}
 function op(s){sub=s;render()}
@@ -328,14 +342,14 @@ function meSave(){S.me={name:$('#mn').value.trim(),av:mav,u:now()};save();closeM
 function vHome(){
   const tot=A().reduce((s,a)=>s+bal(a),0),L=mt(fm),i=sum(L,'in'),o=sum(L,'out'),mx=Math.max(i,o,1),d=donut(L,'out');
   const showIosTip=isIosSafari();
-  return `<div class="hd h1"><div class="row"><div class="who" onclick="meForm()" style="cursor:pointer">${avHtml()}<div>Xin chào!<br><b>${esc(meName())}</b></div></div><button class="ib" onclick="driveSync(1)" aria-label="Đồng bộ">${ic('sync')}</button></div></div>
+  return `<div class="hd h1"><div class="row"><div class="who" onclick="meForm()" style="cursor:pointer">${avHtml()}<div><span style="font-size:14px;opacity:0.9">Xin chào!</span><br><b>${esc(meName())}</b></div></div><button class="ib" onclick="driveSync(1)" aria-label="Đồng bộ">${ic('sync')}</button></div></div>
   <div class="body">
-    ${showIosTip?`<div id="ios-pwa-banner" style="display:flex">${ic('safariShare')}<div><b>Cài ứng dụng lên iPhone:</b> Bấm nút <b>Chia sẻ</b> ở dưới cùng Safari rồi chọn <b>"Thêm vào Màn hình chính"</b> để dùng toàn màn hình.</div></div>`:''}
-    <div class="card first"><div style="font-size:16px">Tổng số dư</div><div class="row"><span class="big">${hide?'••••••':fmt(tot)+' ₫'}</span><button class="eye" onclick="hide=!hide;render(1)">${ic(hide?'eyeoff':'eye')}</button></div></div>
-    <div class="card sc">${sc(ic('list'),'Hạng mục thu/chi',"openCats()")}${sc(ic('hist'),'Lịch sử ghi chép',"fa='';op('hist')")}${sc(ic('lend'),'Cho vay',"dtab='lend';op('debt')")}${sc(ic('borrow'),'Khoản vay',"dtab='borrow';op('debt')")}</div>
-    <div class="st" style="font-size:18px">Tình hình thu chi</div>${mnav()}
-    <div class="card"><div class="row"><div class="bars"><i style="height:${i/mx*100}%;background:var(--in)"></i><i style="height:${o/mx*100}%;background:var(--out)"></i></div>
-    <div style="flex:1;max-width:210px"><div class="row"><span class="m" style="font-size:15px">Thu</span><b class="in">${fmt(i)} ₫</b></div><div class="row" style="margin:8px 0"><span class="m" style="font-size:15px">Chi</span><b class="out">${fmt(o)} ₫</b></div><div class="row" style="border-top:1px solid var(--l);padding-top:8px"><span class="m" style="font-size:15px">Chênh lệch</span><b>${fmt(i-o)} ₫</b></div></div></div>
+    ${showIosTip?`<div id="ios-pwa-banner" style="display:flex">${ic('safariShare')}<div><b>Cài ứng dụng lên iPhone:</b> Bấm nút <b>Chia sẻ</b> ở dưới cùng Safari rồi chọn <b>"Thêm vào Màn hình chính"</b>.</div></div>`:''}
+    <div class="card first"><div style="font-size:15px;color:var(--m);margin-bottom:2px">Tổng số dư</div><div class="row"><span class="big">${hide?'••••••':fmt(tot)+' ₫'}</span><button class="eye" onclick="hide=!hide;render(1)">${ic(hide?'eyeoff':'eye')}</button></div></div>
+    <div class="card sc">${sc(ic('list'),'Hạng mục<br>thu/chi',"openCats()")}${sc(ic('hist'),'Lịch sử<br>ghi chép',"fa='';op('hist')")}${sc(ic('lend'),'Cho vay',"dtab='lend';op('debt')")}${sc(ic('borrow'),'Khoản vay',"dtab='borrow';op('debt')")}</div>
+    <div class="st" style="font-size:17px">Tình hình thu chi</div>${mnav()}
+    <div class="card"><div class="row" style="align-items:flex-end;gap:16px"><div class="bars"><i style="height:${i/mx*100}%;background:var(--in)"></i><i style="height:${o/mx*100}%;background:var(--out)"></i></div>
+    <div style="flex:1"><div class="row"><span class="m" style="font-size:15px">Thu</span><b class="in">${fmt(i)} ₫</b></div><div class="row" style="margin:8px 0"><span class="m" style="font-size:15px">Chi</span><b class="out">${fmt(o)} ₫</b></div><div class="row" style="border-top:1px solid var(--l);padding-top:8px"><span class="m" style="font-size:15px">Chênh lệch</span><b>${fmt(i-o)} ₫</b></div></div></div>
     ${d.e.length?`<div class="row" style="margin-top:18px"><div class="dn" style="background:${d.bg}"></div><div class="lg">${d.e.slice(0,5).map((x,k)=>`<div class="row"><span><s style="background:${COL[k]}"></s>${esc(x[0])}</span><b>${pc(x[1],d.tot)}</b></div>`).join('')}</div></div>`:''}
     <div style="text-align:right;margin-top:14px"><button class="btn g" onclick="fa='';op('hist')">Lịch sử ghi chép</button></div></div>
   </div>`;
@@ -355,7 +369,7 @@ function vAcc(){
     </div>
   </div>
   <div class="body">
-    <div class="card first" style="border-radius:20px;padding:20px">
+    <div class="card first" style="border-radius:20px;padding:18px 20px">
       <div class="m" style="font-size:15px;margin-bottom:4px">Tổng tài sản</div>
       <div class="row"><span class="big">${hide?'••••••':fmt(tot)+' ₫'}</span><button class="eye" onclick="hide=!hide;render(1)">${ic(hide?'eyeoff':'eye')}</button></div>
     </div>
@@ -759,12 +773,12 @@ function mergeIn(R){
 let isSyncing=false;
 async function driveSync(manual){
   if(!SY.token){
-    if(manual)toast('Hãy đăng nhập Google trước');
+    if(manual){go('more');toast('Hãy đăng nhập Google để đồng bộ');}
     return;
   }
   if(now()>SY.exp){
     SY.err='Phiên đăng nhập hết hạn';saveSY();
-    if(manual)toast('Phiên đăng nhập hết hạn, bấm Đăng nhập lại');
+    if(manual){go('more');toast('Phiên đăng nhập hết hạn, bấm Đăng nhập lại');}
     render(1);
     return;
   }
@@ -774,12 +788,10 @@ async function driveSync(manual){
 
   try{
     const authHeaders={Authorization:'Bearer '+SY.token};
-    // 1. Tìm file trong appDataFolder
     const searchRes=await fetch('https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q='+enc(`name='${FILE}' and trashed=false`)+'&fields=files(id)',{headers:authHeaders});
     const sData=await searchRes.json();
     let fileId=sData.files&&sData.files[0]?sData.files[0].id:null;
 
-    // 2. Tải về và gộp nếu file đã tồn tại trên Drive
     if(fileId){
       const downRes=await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`,{headers:authHeaders});
       if(downRes.ok){
@@ -789,7 +801,6 @@ async function driveSync(manual){
     }
     save(1);
 
-    // 3. Nếu chưa có file thì tạo mới
     if(!fileId){
       const createRes=await fetch('https://www.googleapis.com/drive/v3/files',{
         method:'POST',
@@ -800,7 +811,6 @@ async function driveSync(manual){
       fileId=cData.id;
     }
 
-    // 4. Ghi đè bản ghi mới nhất lên Drive
     await fetch(`https://www.googleapis.com/upload/drive/v3/files/${fileId}?uploadType=media`,{
       method:'PATCH',
       headers:{...authHeaders,'Content-Type':'application/json'},
@@ -873,10 +883,9 @@ function restore(){
   }catch(e){toast('Mã sao lưu không hợp lệ')}
 }
 
-/* ---- ĐĂNG KÝ SERVICE WORKER NỘI TUYẾN (Hỗ trợ chạy Offline & PWA) ---- */
 if('serviceWorker' in navigator&&location.protocol.startsWith('http')){
   const swCode=`
-    const CACHE_NAME='sothuchi-cache-v1';
+    const CACHE_NAME='sothuchi-cache-v2';
     self.addEventListener('install',e=>{self.skipWaiting()});
     self.addEventListener('activate',e=>{e.waitUntil(clients.claim())});
     self.addEventListener('fetch',e=>{
@@ -894,7 +903,6 @@ document.addEventListener('click',e=>{if(kpOn&&!e.target.closest('#kp,#amtc'))kp
 fixCats();
 render();
 
-// Tự động kiểm tra đồng bộ khi mở ứng dụng
 window.addEventListener('load',()=>{if(SY.token&&now()<SY.exp)driveSync(0)});
 </script>
 </body>
